@@ -1,0 +1,318 @@
+<html>
+
+<head>
+<style>
+h1 { font-family: Georgia, serif; font-size: 250%; }
+h2 { font-family: Georgia, serif; font-size: 200%;}
+h3 { font-family: Georgia, serif; font-size: 150%;}
+li { font-family: Georgia, serif;  font-size: 100%; font-weight: bold; }
+p { font-family: Georgia, serif;  font-size: 100%; }
+</style>
+</head>
+
+<body>
+
+<h1>Jynx - Jonathan&apos;s Lynx Emulator</h1>
+
+<h2>About this program</h2>
+
+<p>This program is an emulator for the "Lynx 48K" and "Lynx 96K" microcomputers.  These were manufactured in the UK in the early-to-mid 1980s by Cambridge-based firm, Camputers Ltd.</p>
+
+<p>The 48K Lynx was my first computer.  I have written this program, which I hope will be of interest to Lynx fans and "old computer" aficionados.</p>
+
+<p><i>Jonathan Markland, August 2014</i></p>
+
+<h1>User Guide</h1>
+
+<h2>Setting up</h2>
+
+<p><a href="http://github.com/jonathan-markland/Jynx/releases/">The latest program is always downloadable here (from GitHub - NO ROMS).</a> This is presently for <u>Microsoft Windows only</u> :( </p>
+
+<p>I will try to keep an up to date notice of <a href="http://www.jynxemulator.wordpress.com">where to get a FULL VERSION DOWNLOAD on my WordPress Blog!</a></p>
+
+<h3>Links</h3>
+	
+<ul>
+<li><a href="http://www.jynxemulator.wordpress.com">My (NEW) Lynx Blog on WordPress!</a></li>
+<li><a href="http://www.jynx-emulator.tumblr.com">My Lynx Blog on Tumblr!</a></li>
+<li><a href="https://github.com/jonathan-markland/Jynx">My source code is available!</a></li>
+<li><a href="http://www.loveroms.com/roms/Camputers-Lynx">Software in TAP format!</a></li>
+<li><a href="http://www.emu-france.com/emulateurs/10-ordinateurs/109-camputers-lynx/">Emu France have other Camputers Lynx emulators.</a></li>
+<li><a href="http://www.theregister.co.uk/2013/03/20/feature_the_story_of_the_camputers_lynx/">The Register have an excellent article on the Lynx.</a></li>
+<li><a href="http://elborg.dk">Frank's Lynx Web Site.  <i>Frank is a really sound guy, and has loads of Lynx stuff!</i></a></li>
+<li><a href="http://www.hyperspin-fe.com/">Hyperspin strives for the best emulation experience, from the comfort of your own home.</a></li>
+</ul>
+
+<h3>Notices</h3>
+
+<p><i>This software comes with NO WARRANTY, and is licensed under the <a href="http://www.gnu.org/licenses/">GNU General Public License version 3</a></i></p> 
+
+<p><i>I want Linux and MAC OS and Raspberry PI RISC OS versions -- any skilled open-source C++ developers 
+who can reproduce the program's UI on those platforms, and would be interested 
+please contact me on GitHub (see above).</i></p>
+
+
+<h2>File Menu</h2>
+
+<h3>Run TAP file ...</h3>
+<p>The easiest way to get started with a tape.  When you select your tape, this resets the emulator, types in the load command needed, and away you go. <i>Select your variety of Lynx first!</i></p>
+
+<h3>Open TAP file ...</h3>
+<p>Allows the user to open a Lynx tape file (*.TAP).  The file can be loaded with <code>LOAD "FILENAME"</code> or <code>MLOAD "FILENAME"</code> at the Lynx Basic prompt, depending on whether it is basic or machine code.  Unfortunately you just have to know!</p>
+<p>You can find out by loading the TAP file into a text editor.  This contains the file name (in quotes) at the very start of the TAP file, followed by a letter 'B' for Basic, or 'M' for machine code.</p>
+<p>You can use the Lynx BASIC "TAPE" command to speed up loading, e.g.: <code>TAPE 5</code>.  Unlike real cassette recorders, the emulator will supply TAP file data at the rate the Lynx expects.</p>
+
+<h3>Rewind Tape</h3>
+<p>Rewinds the virtual cassette recorder to the start.</p>
+
+<h3>Tape Directory</h3>
+<p>Lists the tape directory for the current TAP by "typing it out" as REM statements on the lynx prompt!</p>
+
+<h3>New Output Tape</h3>
+<p>Prepares a new, blank, "virtual cassette" onto which you can save a files with the Lynx Basic <code>SAVE</code> command, or the Lynx machine-code monitor (MON).</p>
+<p>You can do multiple <code>SAVE</code>s from the Lynx to a single TAP file.  <b>The emulator stores this in memory.</b>  Once you are done, be sure to save the TAP file with "File | Save As TAP file...".</p>
+
+<h3>Save As TAP file...</h3>
+<p>Saves the virtual cassette to the host file system.</p>
+
+<h3>Save State Snapshot ...</h3>
+<p>Saves a snapshot of the Lynx state to a custom snapshot file format.  This cannot be done while the Lynx is saving or loading a cassette, because the snapshot format does not support the cassette information.  Any "virtual cassette" that may be present in the Lynx's "virtual tape recorder" is not included in the snapshot file.</p>
+
+<h3>Load State Snapshot ...</h3>
+<p>Reloads a snapshot of the Lynx's state.  <b>This will wipe out the current state of the Lynx!</b>  The snapshot also records the type of the Lynx (48K or 96K).  On loading, the machine type will be restored too.</p>
+
+<h3>Exit</h3>
+<p>Exits the emulator.</p>
+
+
+
+
+
+<h2>Speed Menu</h2>
+
+<h3>Speed 50% / 100% / 200% / 400% / 800%</h3>
+<p>These options change the speed of the emulation.  This will affect the pitch of the sound, um... <i>and ability to type.</i></p>
+
+<h3>Super speed cassette</h3>
+<p>The system will engage super-speed mode when loading or saving tapes.</p>
+
+<h3>Super speed console</h3>
+<p>Warp speed is engaged by the system when RETURN is pressed.  This continues until the Lynx performs a full-keyboard scanning sweep that returns no keys held down.  Then the system returns to the speed set by the 50%..800% options.  (The keyboard sweep is how we detect the BASIC / INPUT prompt appears / GET$/GETN/KEY$/KEYN is used). <i>This may interfere in the running of programs, particularly games.  No sound can be produced.  You may need to turn this feature off.  But try it out nontheless.</i></p>
+
+<h3>Super speed always</h3>
+<p>Give a 15 year old the Starship Enterprise, and this is what you would get...</p>
+
+
+
+
+
+<h2>Emulation Menu</h2>
+
+<h3>Pause</h3>
+<p>Pauses the emulator until you untick this box.  You can load a snapshot in this state, but it will not start until you un-pause.</p>
+
+<h3>Lynx 48K / Lynx 96K / Lynx 96K + Scorpion ROM</h3>
+<p>These options select which Lynx model you would like to emulate.  Changing the Lynx model will require a reset of the guest machine!</p>
+
+<h3>Pause emulation after tape load</h3>
+<p>Intended to help people wanting to save snapshots just before their game's main screen appears!</p>
+
+<h3>Reset guest machine</h3>
+<p>This option resets the guest machine with a simulated hardware reset.  This will lose the contents of the Lynx's memory completely.</p>
+
+
+
+
+
+
+
+<h2>Display Menu</h2>
+
+<h3>Fit to Window</h3>
+<p>Projects the Lynx's display so it fits tightly within the window.  This may means that the guest pixels do not precisely map onto pixels on the host monitor.</p>
+
+<h3>Use Square Pixels</h3>
+<p>Projects the Lynx's display so it fits within the host's window with the largest size possible, while mapping each guest pixel onto an integral number of pixels on the host monitor.  As you re-size the display, the projects will "jump" between different sizes.</p>
+
+<h3>Fill window</h3>
+<p>Stretch the Lynx's display to fill the window, ignoring aspect ratio.</p>
+
+<h3>Normal Lynx Colours / Green screen monitor / Black and white TV</h3>
+<p>Colour sets to emulate various 80's display devices.</p>
+
+<h3>Level 9 game colours / Show green channel only</h3>
+<p>Colour sets intended for use with Level 9 adventure games.  These store data in the RED and BLUE screen memory, so this shows up on the display.  However, I do not emulate the feature on the Lynx that can hide the RED and BLUE displays (it was rarely used).  So, to be able to read the display while playing these games, use this option.</p>
+
+<h3>Full screen</h3>
+<p>Toggle full screen.  You can still get the menus in full screen mode.  Press Alt-F for File (etc).  Hint: Cursor left/right moves between menus.  Alt-F4 to Exit.</p>
+
+
+
+
+
+
+
+<h2>Sound Menu</h2>
+
+<h3>Record sound to file ...</h3>
+<p>This spools all sound produced by the Lynx to a .wav file on your computer.  The format is fixed at 44,100Hz CD Quality MONO sound (16-bits per sample).  Recording will continue until the "Finish Recording" option is selected, or you exit the emulator.</p>
+
+<h3>Finish recording</h3>
+<p>Ceases recording the Lynx's sound to a .WAV file on the host.  The WAV file will only be complete, and ready to play, once recording is finished.</p>
+
+<h3>Listen to tape sounds</h3>
+<p>This option allows the user to monitor the tape sounds while the Lynx is saving and loading.  The volume of these are reduced.</p>
+<p>Yes, you can save the sound of the tape to a WAV file, with the above options!</p>
+
+<p><i>The Lynx saves a SINE wave format, which is a bit of a waste of time because it reads it back using a voltage comparator, not a A/D converter!  For this reason, the emulator presents the Lynx with a square-wave format when re-loading TAP files.  This is why they sound a bit different.</i></p>
+
+<h3>Enable sound</h3>
+<p>Allows the host to play Lynx sounds.  If you have a problem with sound, you should turn it off using this.</p>
+
+<p><i>On the Microsoft Window platform, with sound ON, the emulation timing is effectively performed by the Windows sound sub-system.  With sound off, a regular Windows timer is used to time the emulation.  This may result in a slight discrepancy in speeds.</i></p>
+
+
+
+
+
+
+<h2>Text Menu</h2>
+
+<h3>Record Lynx Text to file ...</h3>
+<p>Captures text that the Lynx writes to its display to a file on the host.  This does NOT include text the Lynx writes when accepting user input, since this uses text output to flash the cursor!  Capturing text continues until the "Stop" menu option is selected (see below).  This is intended for capturing Lynx BASIC program, and perhaps output from the Lynx monitor (<code>MON</code>).</p>
+
+<p><i>The file is recorded in UTF-8 format, using code points U+0020 to U+00FF, since Lynx Basic program listings can include characters outside the range 32..126.  U+000A is used for line-ends.  The emulator implements this facility by "spying" on the Lynx's character output routine in the ROM, and recording the characters.  This happens in a non-invasive fashion.</i></p>
+
+<h3>Stop Recording Lynx Text</h3>
+<p>Ceases recording lynx text.  The file on the host is closed, and can be immediately opened by other programs on the host.</p>
+
+<h3>Type in text from file ...</h3>
+<p>Automates the entry of a text file into the Lynx.  The file must be ASCII or UTF-8 using code points U+0020 to U+00FF for general characters.  Line endings can be Windows (U+000D U+000A), MAC (U+000D) or UNIX (U+000A).  Entry of the text will start immediately.  You can halt the text entry by pressing ESC.</p>
+
+<h3>Enable Lynx Basic REM command extensions</h3>
+<p>At the moment, this option, when enabled, provides access to the built-in Z80 disassembler.  This allows "<code>REM</code>" commands to be entered into the Lynx which activate the disassembler.  For example:</p>
+
+<p><code>REM DISASM 85E 25</code></p>
+
+<p>The above line will disassemble 25 lines of Z80 code starting at address 0x085E in the Lynx's address space.  (In practice this will be the regular "User RAM" memory view that the users see, with the ROM switched in at address 0).  The disassembler enters the disassembly text directly into the Lynx's console as a sequence of <code>REM</code> commands.  You can halt the process by pressing the ESC key.</p>
+
+
+
+
+
+
+
+<h2>Help menu</h2>
+
+<h3>About</h3>
+<p>Displays the About box!</p>
+
+
+
+
+<h1>User Settings File</h1>
+
+<p>On Microsoft Windows systems, the program saves user settings in the current user's "non-roaming" application data folder.</p> 
+
+<p><i>Please don't fiddle with this file!  If you get it wrong, the program will ignore it on startup.</i></p> 
+
+<h1>Command Line</h1>
+
+<p>I've received feedback on the emulator, and I've added a command line parameter set.</p>
+
+<p>Parameters are given by a switch name with two minus signs in front.  This may be followed by a space and a parameter value. All switches are optional. Examples of usage:</p>
+
+<table cellspacing=8>
+	<tr>
+		<td>--settings</td><td>Specify alternative location for settings file.</td>
+	</tr>
+	<tr>
+		<td>--snapshot</td><td>Specify lynxsnapshot file to be immediately loaded on startup.</td>
+	</tr>
+	<tr>
+		<td>--run</td><td>Specify TAP file to be immediately loaded on startup (--snapshot overrides this).</td>
+	</tr>
+	<tr>
+		<td>--games</td><td>Put emulator into games mode. Does not pester on exit, and does not SAVE the settings file.</td>
+	</tr>
+</table>
+
+<p>Example command lines:</p>
+
+<p><code>
+jynx.exe --settings "C:\users\jonathan\documents\Alternative Settings.txt" --snapshot "C:\users\jonathan\documents\snapshots\AIR RAID.lynxsnapshot" --games
+<code>
+</p>
+<p><code>
+jynx.exe --settings "C:\users\jonathan\documents\Alternative Settings.txt" --run "C:\users\jonathan\documents\snapshots\AIR RAID.TAP"
+<code>
+</p>
+
+<h1>Limitations</h1>
+
+<p>What's not emulated?</p>
+
+<ul>
+<li>Suspending the Z80 while waiting for the line-blanking period to begin.</li>
+<li>The Serial port.  This is dull - and anyway there's ways of getting text in and out of the emulator.</li>
+<li>The slower access ROM!  I didn't know about this until reading through the various Lynx magazines, and I uncovered this gem of a fact.  I have reduced the performance to compensate, but this is always, never mind when the ROM is accessed. </li>
+<li>Hardware interrupts.  The Lynx basically didn't use them!  At least, not for the area of the Lynx I am emulating.</li>
+<li>Z80 HALT instruction.   This is tied with interrupts -- which aren't implemented.</li>
+</ul>
+
+
+
+
+
+
+<h1>History</h1>
+
+<p>The 48K Lynx was my first computer, which my father bought after talking with the staff on the Camputers stand at the Northern Computer Exhibition in Belle-vue, Manchester, November 1983.</p>
+
+<p>Camputers were very ambitious, in a tough market.  Ultimately they didn't have enough software support, so the company folded with, I believe, only about 30,000 units sold.  </p>
+
+<p>Prior to this I am aware of only two Lynx emulators.  The main one is PALE - Pete's Lynx emulator, and another older one which, I think, was DOS only.  Pete's emulator tries to be comprehensive and does the 128K machine.  The UI that I saw wasn't very polished, though.  I also wanted the "square pixels" feature!</p>
+
+<p>I wrote the Lynx emulator code ages ago, as part another Z80 project.  It needed to be "extracted" and cleaned up a bit.  I allowed myself a short timescale, and wanted to do a good, focussed job of providing a 48K machine emulator, and not to get distracted by the other machines.  That said, the 96 is so similar to the 48, it's silly not to include it!</p>
+
+<p>I'm not planning on doing the 128K machine because I have no "emotional" attachment to it.  By the time Christmas 1985 rolled around, the Lynx was put away, and replaced with the Amstrad CPC 6128 + Colour monitor.</p>
+
+
+
+
+<h1>Community Software Development Help Wanted</h1>
+
+<p><i>So - what help would be useful from the developer community for this project?</i></p>
+
+<ul>
+<li>A Linux C++ GCC guru with experience on the windowed systems on Linux.</li>
+<li>A MAC OS C++ guru with experience on the MAC OS desktop.</li>
+</ul>
+
+<p>The brief would be very simple - to provide the equivalent user interface as I have in the Windows version.  The code is separated into clearly marked "Portable" and OS-specific folders.  The program is heavily separated using interface classes, so this should be a leg up.  Also, a simple View-Model scenario is used. The Model class has all of the UI logic, so you just need to implement the View class (equivalent to MainForm) and provide the specific actions that the Model requires.</p>
+
+<p>Your code provides the main() function and pretty much runs the show, calling into the emulator at 20ms intervals to perform another emulation "burst", which has the side-effect of mixing another buffer of sound samples for playback.</p>
+
+<p>You need to provide the user interface, and let the Model tell you what to do, and when.  There is no other UI logic required.</p>
+
+<p>As you can see from the Windows version, there is a single executable, which is very small.  I would expect this to be attainable on other systems too.  <i>A sorry symptom of "modern" software engineering practice appears to be that of dependency bloat...</i></p>
+
+<p>I hope this setup would be workable.</p>
+
+<p>Contributors would receive recognition on this project's main site, and a mention in the "About" box on all release platform versions.</p>
+
+
+<h2>Camputers Lynx Community</h2>
+
+<p>It might be nice if the 30,000 people who owned Lynxes all those years ago, would look in the cupboards and see if there are any tapes that aren't on the internet.  I really want to get QUACMAN !  It was an amazing PacMan version.</p>
+
+<p>August 2014 - What happened to the camputerslynx.info web site?  It was up a few months ago?</p>
+
+<h1>Building the Source</h1>
+
+<p>At the time of writing, this is MS-Windows only.  The SLN file should be loaded into Visual Studio and it should just build!</p>
+
+<p>I am hoping the Express edition of VS will be suitable.  I'll try it sometime!</p>
+
+</body>
+</html>
